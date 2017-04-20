@@ -1,0 +1,19 @@
+﻿<h1>ShopList</h1>
+<h3>What is it?</h3>
+<p>ShopList is a Craiglist clone built during week 6 of The Iron Yard's 12-week immersive back-end course</p>
+<h3>Why A craigslist Clone?</h3>
+<pre><code class="language-csharp">public class SubCatController : Controller
+   {
+       ApplicationDbContext db = new ApplicationDbContext();
+
+       public ActionResult Index(int loc_Id, int subCat_Id, string viewOrder, string view)
+       {
+           ViewBag.Loc_Id = loc_Id;
+           ViewBag.SubCat_Id = subCat_Id;
+           ViewBag.View = view;
+           var posts = db.Posts.Where(p =&gt; p.SubCat_Id == subCat_Id &amp;&amp; p.Loc_Id == loc_Id);
+           if (viewOrder == &quot;high&quot;)
+           {
+               ViewBag.Posts = posts.ToList().OrderByDescending(p =&gt; p.Price);
+           }
+</code></pre>
